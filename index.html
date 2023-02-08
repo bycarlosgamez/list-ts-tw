@@ -9,64 +9,124 @@
     <script type="module" src="/src/main.ts" defer></script>
   </head>
 
-  <body>
-    <main>
-      <h1 class="offscreen">My List</h1>
-
-      <section class="newItemEntry">
-        <h2 class="offscreen">New Item Entry</h2>
-        <form class="newItemEntry__form" id="itemEntryForm">
-          <label for="newItem" class="offscreen">Enter a new to do item</label>
-          <input
-            class="newItemEntry__input"
-            id="newItem"
-            type="text"
-            maxlength="40"
-            autocomplete="off"
-            placeholder="Add item"
-          />
-          <button
-            id="addItem"
-            class="button newItemEntry__button"
-            title="Add new item"
-            aria-label="Add new item to list"
+  <body class="dark:bg-gray-900 antialiased">
+    <main
+      class="flex-auto w-full min-w-0 lg:static lg:max-h-full lg:overflow-visible"
+    >
+      <div class="flex w-full justify-center">
+        <div
+          class="flex-auto max-w-4xl min-w-0 pt-6 lg:px-8 lg:pt-8 pb:12 xl:pb-24 lg:pb-16"
+        >
+          <section
+            class="p-4 my-8 bg-white border border-gray-200 rounded-lg shadow-md sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700"
+            aria-label="New Item Entry"
           >
-            +
-          </button>
-        </form>
-      </section>
-
-      <section class="listContainer">
-        <header class="listTitle">
-          <h2 id="listName">List</h2>
-          <button
-            id="clearItemsButton"
-            class="button listTitle__button"
-            title="Clear the list"
-            aria-label="Remove all items from the list"
+            <form class="seva-form formkit-form">
+              <div data-style="clean" class="flex items-end justify-center">
+                <ul
+                  class="formkit-alert formkit-alert-error"
+                  data-element="errors"
+                  data-group="alert"
+                ></ul>
+                <div
+                  data-element="fields"
+                  data-stacked="false"
+                  class="flex items-center w-full max-w-md seva-fields formkit-fields"
+                >
+                  <div class="relative w-full mr-3 formkit-field">
+                    <label
+                      for="new-item"
+                      class="hidden mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                      >Enter a new to do item</label
+                    >
+                    <div
+                      class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none"
+                    ></div>
+                    <input
+                      id="new-item"
+                      class="formkit-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      name="new-item"
+                      aria-label="New Item"
+                      placeholder="Enter a new to do item"
+                      required=""
+                      type="text"
+                    />
+                  </div>
+                  <button class="formkit-submit">
+                    <div class="formkit-spinner">
+                      <div></div>
+                      <div></div>
+                      <div></div>
+                    </div>
+                    <span
+                      class="px-5 py-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg cursor-pointer hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                      >Add</span
+                    >
+                  </button>
+                </div>
+              </div>
+            </form>
+          </section>
+          <!-- list items -->
+          <section
+            class="p-4 my-8 bg-white border border-gray-200 rounded-lg shadow-md sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700 w-full"
+            aria-label="New Item Entry"
           >
-            Clear
-          </button>
-        </header>
-        <hr />
-        <ul id="listItems">
-          <!-- <li class="item">
-                    <input type="checkbox" id="1">
-                    <label for="1">eat</label>
-                    <button class="button">X</button>
+            <div class="flex items-center justify-between mb-4">
+              <h5
+                class="text-xl font-bold leading-none text-gray-900 dark:text-white"
+              >
+                Todo Items
+              </h5>
+              <button
+                id="clear-items-btn"
+                class="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500"
+                title="Clear the list"
+                aria-label="Remove all items from the list"
+              >
+                Clear All
+              </button>
+            </div>
+            <div class="flow-root">
+              <ul
+                role="list"
+                class="divide-y divide-gray-200 dark:divide-gray-700"
+              >
+                <li class="py-3 sm:py-4">
+                  <div class="flex items-center">
+                    <div class="flex-shrink-0 pt-1">
+                      <input
+                        id="bordered-checkbox-1"
+                        type="checkbox"
+                        value=""
+                        name="bordered-checkbox"
+                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                      />
+                    </div>
+                    <div class="flex-1 min-w-0 ms-4">
+                      <label
+                        for="bordered-checkbox-1"
+                        class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                        >Default radio</label
+                      >
+                    </div>
+                    <div
+                      class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white"
+                    >
+                      <button
+                        type="button"
+                        class="px-3 py-2 text-xs font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  </div>
                 </li>
-                <li class="item">
-                    <input type="checkbox" id="2">
-                    <label for="2">sleep</label>
-                    <button class="button">X</button>
-                </li>
-                <li class="item">
-                    <input type="checkbox" id="3">
-                    <label for="3">code</label>
-                    <button class="button">X</button>
-                </li> -->
-        </ul>
-      </section>
+              </ul>
+            </div>
+          </section>
+        </div>
+      </div>
     </main>
   </body>
 </html>
